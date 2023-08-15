@@ -1,0 +1,9 @@
+
+
+# LaTex build output
+
+*.pdf
+*.nav
+*.snm
+*.synctex.gz
+indent.log

@@ -1,0 +1,52 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ctex}
+\usepackage{fontspec}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Theme
+\usetheme{Madrid}
+
+% Section Page
+\AtBeginSection[]{
+    \begin{frame}
+        \vfill
+        \centering
+        \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+            \usebeamerfont{title}\insertsectionhead\par%
+        \end{beamercolorbox}
+        \vfill
+    \end{frame}
+}
+
+% Template
+\input{template/color.tex}
+\input{template/lst_style.tex}
+
+
+%Information to be included in the title page:
+\title{MankorOS}
+\subtitle{Place Holder}
+\author{满洋、梁韬、苏亦凡}
+\institute[HITSZ]{哈尔滨工业大学（深圳）} 
+\date{\today}
+\logo{
+    % HITSZ logo
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+\end{frame}
+
+
+% Sections
+
+\input{sections/overview.tex}
+
+\end{document}
