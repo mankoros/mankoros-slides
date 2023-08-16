@@ -4,6 +4,7 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{svg}
 
 % Theme
 \usetheme{Madrid}
@@ -27,12 +28,14 @@
 
 %Information to be included in the title page:
 \title{MankorOS}
-\subtitle{Place Holder}
+\subtitle{操作系统设计赛内核实现赛道全国总决赛答辩}
 \author{满洋、梁韬、苏亦凡}
 \institute[HITSZ]{哈尔滨工业大学（深圳）} 
 \date{\today}
 \logo{
     % HITSZ logo
+    \includegraphics[height=1cm]{assets/mankoros-logo.png}
+    \includegraphics[height=1cm]{assets/hitsz.jpg}
 }
 
 \begin{document}
@@ -52,6 +55,7 @@
 \input{sections/interrupt.tex}
 \input{sections/memory.tex}
 \input{sections/device.tex}
+\input{sections/feature.tex}
 \input{sections/conclusion.tex}
 
 \end{document}
