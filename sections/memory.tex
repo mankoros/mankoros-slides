@@ -1,14 +1,22 @@
 \section{内存管理}
 
+
 \begin{frame}
-    \frametitle{内存管理现状观察}
+    \frametitle{页表设计}
+
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{启动阶段内存管理}
 
     启动流程中，内核接管到打开地址翻译前
 
     \begin{enumerate}
         \item 竞赛操作系统
               \begin{itemize}
-                  \item 固定链接高位地址
+                  \item 固定链接高位地址，汇编打开翻译
                   \item 硬编码 boot 页表到内核数据段
               \end{itemize}
         \item xv6-riscv
@@ -48,8 +56,8 @@
                   \item 填充粗粒度页表 (2 MiB)，使用 data 段
                   \item 映射内核映像
                   \item 映射 DTB
-                  \item 返回汇编
               \end{itemize}
+        \item 返回汇编
         \item 汇编打开分页，重新初始化虚拟 stack
         \item 进入 rust main boot 流程 (SBI debug console 可用)
               \begin{itemize}
