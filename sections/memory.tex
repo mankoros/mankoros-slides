@@ -1,1 +1,63 @@
 \section{内存管理}
+
+\begin{frame}
+    \frametitle{内存管理现状观察}
+
+    启动流程中，内核接管到打开地址翻译前
+
+    \begin{enumerate}
+        \item 竞赛操作系统
+              \begin{itemize}
+                  \item 固定链接高位地址
+                  \item 硬编码 boot 页表到内核数据段
+              \end{itemize}
+        \item xv6-riscv
+              \begin{itemize}
+                  \item 内核使用低地址空间
+                  \item 不能支持大用户程序
+              \end{itemize}
+        \item Linux
+              \begin{itemize}
+                  \item 支持装载到任意 2M 对齐的地址并启动
+                  \item 支持内核地址空间随机化 (KASLR)
+              \end{itemize}
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{实现难点}
+
+
+    \begin{enumerate}
+        \item 不能硬编码 Boot 页表：需要 Runtime 初始化
+        \item 打开翻译前内核位于低地址：需要严格位置无关代码
+        \item Boot 页表的内存管理：内核的内存管理不可用
+        \item 外设管理：没有外设，没有串口，调试困难
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{实现方法}
+
+    \begin{enumerate}
+        \item 汇编初始化物理 stack
+        \item rust 初始化页表
+              \begin{itemize}
+                  \item 填充粗粒度页表 (2 MiB)，使用 data 段
+                  \item 映射内核映像
+                  \item 映射 DTB
+                  \item 返回汇编
+              \end{itemize}
+        \item 汇编打开分页，重新初始化虚拟 stack
+        \item 进入 rust main boot 流程 (SBI debug console 可用)
+              \begin{itemize}
+                  \item 解析 DTB
+                  \item 映射设备
+              \end{itemize}
+
+    \end{enumerate}
+
+
+\end{frame}
