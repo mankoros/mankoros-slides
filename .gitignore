@@ -6,4 +6,6 @@
 *.nav
 *.snm
 *.synctex.gz
-indent.log
+*.log
+*.out
+*.aux
