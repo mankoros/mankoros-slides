@@ -27,9 +27,30 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{设备管理实现}
 
+    \begin{enumerate}
+        \item 设备管理：Device Trait
+              \begin{itemize}
+                  \item probe
+                  \item interrupt\_handler
+              \end{itemize}
+        \item 设备树解析
+              \begin{itemize}
+                  \item 同一份二进制可以在不同的硬件上启动
+              \end{itemize}
+        \item 设备管理器
+    \end{enumerate}
+
+    \begin{lstlisting}
+        pub struct DeviceManager {
+            cpus: Vec<cpu::CPU>,
+            plic: plic::PLIC,
+            devices: Vec<Arc<dyn Device>>,
+            interrupt_map: BTreeMap<usize, Arc<dyn Device>>,
+        }
+    \end{lstlisting}
 
 
 \end{frame}
