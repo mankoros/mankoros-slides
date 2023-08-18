@@ -1,10 +1,8 @@
-\section{启动阶段内存管理}
+\section{任意地址内核装载}
 
 
 \begin{frame}
-    \frametitle{启动阶段内存管理}
-
-    启动流程中，内核接管到打开地址翻译前
+    \frametitle{内核装载现状观察}
 
     \begin{enumerate}
         \item 竞赛操作系统
@@ -19,7 +17,7 @@
               \end{itemize}
         \item Linux
               \begin{itemize}
-                  \item 支持装载到任意 2M 对齐的地址并启动
+                  \item 支持装载到 \strong{任意 2M 对齐的地址} 并启动
                   \item 支持内核地址空间随机化 (KASLR)
               \end{itemize}
     \end{enumerate}
@@ -29,12 +27,11 @@
 \begin{frame}
     \frametitle{实现难点}
 
-
     \begin{enumerate}
         \item 不能硬编码 Boot 页表：需要 Runtime 初始化
         \item 打开翻译前内核位于低地址：需要严格位置无关代码
-        \item Boot 页表的内存管理：内核的内存管理不可用
-        \item 外设管理：没有外设，没有串口，调试困难
+        \item Boot 页表的内存管理困难：内核的内存管理不可用
+        \item 外设尚未初始化：没有外设，没有串口，调试困难
     \end{enumerate}
 
 \end{frame}

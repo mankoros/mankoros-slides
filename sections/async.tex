@@ -1,4 +1,4 @@
-\section{异步协作式调度}
+\section{异步协作式内核调度}
 
 \begin{frame}
     \frametitle{为何采用异步设计？}
@@ -9,10 +9,10 @@
                   \item SD 卡 IO 可以采用中断的形式实现
                   \item 网络设备一般可用 DMA
               \end{itemize}
-        \item 统一内核与用户程序的调度
+        \item 节约内核对 CPU 的使用
               \begin{itemize}
-                  \item 用户程序在执行空转操作时可以通过系统调用让出执行权，那内核呢？
-                  \item 同步内核需要手动插入调度点，而异步内核在每一个 await 处都是调度点
+                  \item 用户程序在执行不需要 CPU 真正运转的空转操作时可以通过系统调用让出执行权
+                  \item 异步内核可以自然地在内核中实现这种机制, 而同步内核需要额外的代码
               \end{itemize}
         \item Rust 提供了足够好的异步编程支持
               \begin{itemize}
@@ -31,14 +31,15 @@
                   \item 当所求数据在缓存中时，await 可以直接返回，性能几乎与同步版本相同
                   \item 当所求数据需要从块设备中读取时，await 会主动放弃当前 CPU 执行权
               \end{itemize}
-        \item 异步管道与定时任务
+        \item 异步管道
+              \begin{itemize}
+                  \item 只有在读取端读取了管道内容之后，写入端才会被唤醒执行，反之亦然
+                  \item 管道两端\strong{自然地}根据数据产生速率得到了与之匹配的调度时间
+              \end{itemize}
+        \item 异步定时队列与异步睡眠锁
               \begin{itemize}
                   \item 此类任务相比起 "轮询"，"通知" 显得更为自然而高效
                   \item 可以直接复用 waker 机制实现通知，复用异步调度器实现执行，无需额外代码
-              \end{itemize}
-        \item 异步睡眠锁
-              \begin{itemize}
-                  \item 自然地在锁竞争激烈时放弃竞争，进入睡眠
               \end{itemize}
         \item Fallback: \texttt{loop \{ yield().await \}}
               \begin{itemize}
@@ -51,7 +52,7 @@
 \begin{frame}
     \frametitle{优势}
 
-    在 IO 测试中 (\texttt{iozone}), 我们的内核取得了优异的成绩
+    在 IO 测试中 (\texttt{iozone})，我们的内核取得了优异的成绩
     \begin{itemize}
         \item 异步实现能高效利用 CPU 执行时间，将尽可能多的 IO 请求并发执行
         \item 相对激进的缓存策略，尽可能填满板子的内存

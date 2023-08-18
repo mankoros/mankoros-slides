@@ -7,23 +7,24 @@
     \begin{itemize}
         \item 同一份二进制可以在不同的硬件上启动
               \begin{itemize}
-                  \item 启动阶段内存管理
-                  \item 设备树解析
+                  \item 任意地址内核装载
+                  \item 基于设备树的灵活设备发现
               \end{itemize}
         \item 支持多种外设
               \begin{itemize}
                   \item 设备树解析
-                  \item 设备管理器
+                  \item 能接受任意 PLIC 标准外部中断
               \end{itemize}
-        \item 高性能
+        \item 高性能 IO
               \begin{itemize}
                   \item 协作式调度
-                  \item 中断处理和 DMA
+                  \item 多种中断处理和 DMA
               \end{itemize}
         \item 为操作系统实现细节学习提供了宝贵的资料
               \begin{itemize}
                   \item 模块化的代码
                   \item 详细的实现文档
+                  \item 特殊功能的实现范例
                   \item 协助另外两只队伍开发 VisionFive V2 的 SD 卡驱动
               \end{itemize}
     \end{itemize}
