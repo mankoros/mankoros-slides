@@ -21,6 +21,58 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{基本优化}
+    \begin{columns}
+        \begin{column}{.5\linewidth}
+            \begin{enumerate}
+                \item 进程地址空间
+                      \begin{itemize}
+                          \item 写时复制 (CoW)
+                          \item mmap private 懒加载
+                          \item mmap annoymous 懒分配
+                      \end{itemize}
+                \item ELF 解析
+                      \begin{itemize}
+                          \item 异步解析
+                          \item 复用 mmap private 懒加载
+                      \end{itemize}
+                \item 物理内存与上下文切换
+                      \begin{itemize}
+                          \item 共享内核页表
+                          \item 按需浮点上下文保存
+                          \item 无锁物理页引用计数
+                      \end{itemize}
+            \end{enumerate}
+        \end{column}
+
+        \begin{column}{.5\linewidth}
+            \begin{enumerate}
+                \setcounter{enumi}{3}
+                \item VFS
+                      \begin{itemize}
+                          \item 页缓存
+                          \item 路径缓存
+                          \item 文件元信息缓存
+                      \end{itemize}
+                \item Fat32
+                      \begin{itemize}
+                          \item (目录内容的) 块缓存
+                          \item FAT 缓存
+                          \item 文件簇链缓存
+                      \end{itemize}
+                \item 系统调用
+                      \begin{itemize}
+                          \item 统一子函数签名以使用跳转表
+                          \item 基于特定内核异常捕捉的\\
+                                快速用户指针检查
+                                %   \item 零拷贝 IO 接口
+                      \end{itemize}
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
     \frametitle{在线测试成绩}
     \begin{figure}
         \centering
