@@ -4,19 +4,19 @@
     \frametitle{中断处理现状观察}
 
     \begin{itemize}
-        \item 参赛作品普遍不处理外部中断，仅处理时钟中断。
+        \item 简易操作系统普遍不处理外部中断，仅处理时钟中断。
     \end{itemize}
 
     \begin{table}
         \centering
         \begin{tabular}{|c|c|}
-            \hline \textbf{比赛队伍} & \textbf{外部中断处理情况} \\
-            \hline ArceOS (Rust)     & 不处理                    \\
-            \hline FTL OS (Rust)     & 不处理                    \\
-            \hline Maturin (Rust)    & 不处理                    \\
-            \hline 图漏图森破 (C)    & 仅处理串口                \\
-            \hline NPUCore (Rust)    & 不处理                    \\
-            \hline xv6-riscv         & 处理串口和 virtio         \\
+            \hline \textbf{操作系统（开发语言）} & \textbf{外部中断处理情况} \\
+            \hline ArceOS (Rust)       & 不处理               \\
+            \hline FTL OS (Rust)       & 不处理               \\
+            \hline Maturin (Rust)      & 不处理               \\
+            \hline 图漏图森破 (C)           & 仅处理串口             \\
+            \hline NPUCore (Rust)      & 不处理               \\
+            \hline xv6-riscv           & 处理串口和 virtio      \\
             \hline
         \end{tabular}
     \end{table}
@@ -28,10 +28,10 @@
     \frametitle{原因分析}
 
     \begin{enumerate}
-        \item 比赛原因
+        \item 开发者原因
               \begin{itemize}
                   \item RISC-V SBI 提供了 debug console 可用于串口 IO
-                  \item 比赛对外设没有要求
+                  \item proof-of-concept 操作系统不需要支持大量外设
               \end{itemize}
         \item 客观原因
               \begin{itemize}

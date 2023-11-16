@@ -12,7 +12,7 @@
         \item 节约内核对 CPU 的使用
               \begin{itemize}
                   \item 用户程序在执行不需要 CPU 真正运转的空转操作时可以通过系统调用让出执行权
-                  \item 异步内核可以自然地在内核中实现这种机制, 而同步内核需要额外的代码
+                  \item 异步内核可以自然地在内核中实现这种机制，而同步内核需要额外的代码
               \end{itemize}
         \item Rust 提供了足够好的异步编程支持
               \begin{itemize}
@@ -49,19 +49,19 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}
-    \frametitle{优势}
+% \begin{frame}
+%     \frametitle{优势}
 
-    在 IO 测试中 (\texttt{iozone})，我们的内核取得了优异的成绩
-    \begin{itemize}
-        \item 异步实现能高效利用 CPU 执行时间，将尽可能多的 IO 请求并发执行
-        \item 相对激进的缓存策略，尽可能填满板子的内存
-    \end{itemize}
+%     在 IO 测试中 (\texttt{iozone})，我们的内核取得了优异的成绩
+%     \begin{itemize}
+%         \item 异步实现能高效利用 CPU 执行时间，将尽可能多的 IO 请求并发执行
+%         \item 相对激进的缓存策略，尽可能填满板子的内存
+%     \end{itemize}
 
-    \begin{figure}
-        \includegraphics[width=.75\textwidth]{assets/leaderboard-final1.png}
-    \end{figure}
-\end{frame}
+%     \begin{figure}
+%         \includegraphics[width=.75\textwidth]{assets/leaderboard-final1.png}
+%     \end{figure}
+% \end{frame}
 
 % \begin{frame}
 %     \frametitle{不足}
@@ -75,4 +75,4 @@
 %     \end{enumerate}
 % \end{frame}
 
-% 理论上这里还能加一页展望, 写写要是能突破 POSIX 限制, 异步内核能发展得怎么样
+% 理论上这里还能加一页展望，写写要是能突破 POSIX 限制，异步内核能发展得怎么样
